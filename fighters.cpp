@@ -31,6 +31,7 @@ public:
     int Block(){
         return std::rand() % this->blockMax;
     }
+
 };
  
 class Fight{
@@ -82,10 +83,9 @@ public:
 
 void showMenu() {
     cout << "**********MENU**********" << endl;
-    cout << "1. Choose fighters" << endl;
-    cout << "2. Create fighter" << endl;
-    cout << "3. Start fight" << endl;
-    cout << "4. Exit" << endl;
+    cout << "1. Create fighters" << endl;
+    cout << "2. Start fight" << endl;
+    cout << "3. Exit" << endl;
     cout << "************************" << endl;
 }
  
@@ -93,8 +93,17 @@ int main()
 {
     // User selection
     int option;
-    int selectedFighter1;
-    int selectedFighter2;
+    // fighter 1 stats
+    string name1;
+    int health1;
+    int damage1;
+    int block1;
+
+    // fighter 2 stats
+    string name2;
+    int health2;
+    int damage2;
+    int block2;
     // Random number generator
     srand(time(NULL));
     
@@ -106,22 +115,34 @@ int main()
         system("cls");
 
         switch(option) {
-            case 1: cout << "Please choose Fighter 1: ";
-                    // change this to string?
-                    cin >> selectedFighter1;
-                    cout << "Please choose Fighter 2: ";
-                    cin >> selectedFighter2;
+            case 1: // enter fighter stats
+                    cout << "Please enter the name of Fighter 1: ";
+                    cin >> name1;
+                    cout << "\nPlease enter the health of Fighter 1: ";
+                    cin >> health1;
+                    cout << "\nPlease enter the damage of Fighter 1: ";
+                    cin >> damage1;
+                    cout << "\nPlease enter the block of Fighter 1: ";
+                    cin >> block1;
+
+                    cout << "\nPlease enter the name of Fighter 2: ";
+                    cin >> name2;
+                    cout << "\nPlease enter the health of Fighter 2: ";
+                    cin >> health2;
+                    cout << "\nPlease enter the damage of Fighter 2: ";
+                    cin >> damage2;
+                    cout << "\nPlease enter the block of Fighter 2: ";
+                    cin >> block2;
+                    
                     break;
-            case 2: cout << "Create a fighter: ";
-                break;
                     // Start fight. Set fighters here or the damage will accumulate 
                     // each time number 3 is chosen.
-            case 3: Fighter goku("Goku", 100, 35, 15);
-                    Fighter vegeta("Vegeta", 125, 35, 10);
-                    Fight::StartFight(goku, vegeta); break;
+            case 2: Fighter fighter1(name1, health1, damage1, block1);
+                    Fighter fighter2(name2, 125, 35, 10);
+                    Fight::StartFight(fighter1, fighter2); break;
         }
     } 
-        while (option != 4);
+        while (option != 3);
     
     return 0;
 }
